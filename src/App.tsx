@@ -106,7 +106,7 @@ export default function App() {
 
   const handleCompute = () => {
     const result = calculateResult();
-    if (result === state.targetNumber && selectedIndices.length === currentLevel.numToPick) {
+    if (result === state.targetNumber && (selectedIndices.length === currentLevel.numToPick || selectedIndices.length === 1)) {
       const solver = state.currentPlayer === 1 ? 2 : 1;
       const newSuccesses = { ...state.consecutiveSuccesses };
       newSuccesses[solver] += 1;
@@ -330,7 +330,7 @@ export default function App() {
                   </div>
                   <button 
                     onClick={handleCompute}
-                    disabled={selectedIndices.length !== currentLevel.numToPick}
+                    disabled={selectedIndices.length !== currentLevel.numToPick && selectedIndices.length !== 1}
                     className="px-12 py-4 bg-emerald-500 text-white rounded-full font-bold uppercase tracking-widest hover:bg-emerald-600 transition-all active:scale-95 disabled:opacity-30"
                   >
                     Compute!
@@ -439,7 +439,7 @@ export default function App() {
                   </div>
                   <button 
                     onClick={handleCompute}
-                    disabled={selectedIndices.length !== currentLevel.numToPick}
+                    disabled={selectedIndices.length !== currentLevel.numToPick && selectedIndices.length !== 1}
                     className="px-12 py-4 bg-blue-500 text-white rounded-full font-bold uppercase tracking-widest hover:bg-blue-600 transition-all active:scale-95 disabled:opacity-30"
                   >
                     Compute!
